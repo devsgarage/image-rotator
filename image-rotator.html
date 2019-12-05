@@ -1,0 +1,109 @@
+<!Doctype html>
+<head>
+    <title>Image Rotator</title>
+    <style>
+        html, body{height:100%;}
+        body{font:15px/1 sans-serif; margin:0;}
+
+        /*
+        RESPONSIVE CSS3 SLIDE CAROUSEL GALLERY
+        http://stackoverflow.com/a/34696029/383904
+        */
+
+        .CSSgal{
+        position: relative;
+        overflow: hidden;
+        height:   180px; /* Or set a fixed height */
+        width: 180px;
+        }
+
+        /* SLIDER */
+        .CSSgal .slider{
+        height:      180px;
+        white-space: nowrap;
+        font-size:   0;
+        transition:  0.8s;
+        /* animation-name: example;
+        animation-duration: 38s;
+        animation-iteration-count: infinite; */
+        }
+
+        /* SLIDES */
+        .CSSgal .slider > *{
+        font-size:       1rem;
+        display:         none;
+        vertical-align:  top;
+        height:          180px;
+        width:           180px;
+        background:      none 50% no-repeat;
+        background-size: contain;
+        }
+        
+        
+        /* SLIDER ANIMATION POSITIONS */
+        #s1:target ~ .slider{ transform: translateX(   0%); -webkit-transform: translateX(   0%); }
+        #s2:target ~ .slider{ transform: translateX(-180px); -webkit-transform: translateX(-180px); }
+
+        @keyframes example {
+            0%   {transform: translateX(0px); -webkit-transform: translateX(0px);}
+            39.5% {transform: translateX(0px); -webkit-transform: translateX(0px);}
+            50%  {transform: translateX(-180px); -webkit-transform: translateX(-180px);}
+            89.5% {transform: translateX(-180px); -webkit-transform: translateX(-180px);}            
+            100% {transform: translateX(0px); -webkit-transform: translateX(0px);}
+        }        
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        $().ready(function(){
+            slider();
+        });
+        function slider() {
+            // $(".slider #1").show("fade",500);
+            // $(".slider #1").delay(2000).hide("slide",{direction:'left'},500);
+
+            var sc=$(".slider div").size();
+            var count= 1;
+
+            slide();
+
+            function slide(){
+                
+                $(".slider #"+count).show("slide",{direction:'right'},500);
+                $(".slider #"+count).delay(2000).hide("slide",{direction:'left'},500);
+                
+                if(count === sc) {
+                    count = 1;
+                }
+                else {
+                    count=count+1;
+                }
+                setTimeout(slide,3000);
+            }   
+        }
+    </script>
+</head>
+<body>
+    <div class="CSSgal">
+      
+        <div class="slider">
+          <div id="1" style="background-image:url('./Kentico_Logotype_shortcut_rgb_180.png');"></div>          
+          <!-- <div id="2" style="background-image:url('./Kentico_Logotype_shortcut_rgb_180.png');"></div>           -->
+          <div id="2" style="background-image:url('./Black-Logo2.png');"></div>
+        </div>
+      
+      </div>
+      
+    <!-- <script>
+            var slider = document.querySelector('.slider');    
+            var numOfImages = document.querySelectorAll('.slider div').length;  
+            let imageSize = 180;
+
+            var slideInterval = setInterval(nextSlide,2000);
+
+            function nextSlide() {
+                
+            }
+            console.log(numOfImages);   
+        </script> -->
+</body>
